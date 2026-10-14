@@ -19,8 +19,9 @@ jobs:
       - name: Add iOS platform
         working-directory: ios-app
         run: |
-          npx cap add ios --packagemanager SPM
-          npx cap sync ios
+          set -o pipefail
+          mkdir -p ../ci-log
+          (npx cap --version && npx cap add ios --packagemanager SPM && npx cap sync ios) 2>&1 | tee ../ci-log/add-ios.txt
       - name: App icon and name
         working-directory: ios-app
         run: |
@@ -31,9 +32,11 @@ jobs:
       - name: Build (unsigned)
         working-directory: ios-app
         run: |
+          set -o pipefail
           xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release \
             -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath build \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build | tail -n 60
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" build 2>&1 | tee ../ci-log/xcodebuild-full.txt | tail -n 80
+          grep -E "error:|BUILD (SUCCEEDED|FAILED)" ../ci-log/xcodebuild-full.txt | head -50 > ../ci-log/xcodebuild-errors.txt || true
           mkdir -p Payload
           cp -R build/Build/Products/Release-iphoneos/App.app Payload/
           zip -qry ShagZaShagom.ipa Payload
@@ -48,3 +51,15 @@ jobs:
         run: |
           gh release delete ios-latest -y --cleanup-tag || true
           gh release create ios-latest ios-app/ShagZaShagom.ipa --title "Шаг за шагом для iPhone" --notes "Файл для установки через Sideloadly/AltStore. Собрано автоматически."
+      - name: Save logs to ci-logs branch
+        if: always()
+        run: |
+          mkdir -p ci-log
+          cp ci-log/xcodebuild-full.txt ci-log/xcodebuild-full.txt 2>/dev/null || true
+          tail -c 200000 ci-log/xcodebuild-full.txt > ci-log/xcodebuild-tail.txt 2>/dev/null || true
+          rm -f ci-log/xcodebuild-full.txt
+          cd ci-log
+          git init -q && git checkout -q -b ci-logs
+          git config user.email ci@example.com && git config user.name ci
+          git add -A && git commit -qm "logs ${{ github.run_id }}" || true
+          git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-logs
