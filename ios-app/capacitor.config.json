@@ -1,0 +1,9 @@
+{
+  "appId": "ru.shagzashagom.app",
+  "appName": "Шаг за шагом",
+  "webDir": "www",
+  "ios": { "contentInset": "always", "backgroundColor": "#14161c", "scrollEnabled": true },
+  "plugins": {
+    "LocalNotifications": { "presentationOptions": ["banner", "sound", "list"] }
+  }
+}
