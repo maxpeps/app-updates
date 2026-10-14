@@ -1,0 +1,23 @@
+7.6.9
+✔ Adding native Xcode project in ios in 64.12ms
+✔ add in 64.79ms
+✔ Copying web assets from www to ios/App/App/public in 18.21ms
+✔ Creating capacitor.config.json in ios/App/App in 6.69ms
+✔ copy ios in 50.73ms
+✔ Updating iOS plugins in 337.83μs
+✔ Updating iOS native dependencies with pod install in 11.30s
+[info] Found 1 Capacitor plugin for ios:
+       @capacitor/local-notifications@7.0.7
+✔ update ios in 11.40s
+[success] ios platform added!
+Follow the Developer Workflow guide to get building:
+https://capacitorjs.com/docs/basics/workflow
+✔ Copying web assets from www to ios/App/App/public in 10.82ms
+✔ Creating capacitor.config.json in ios/App/App in 1.38ms
+✔ copy ios in 32.37ms
+✔ Updating iOS plugins in 257.58μs
+✔ Updating iOS native dependencies with pod install in 4.30s
+[info] Found 1 Capacitor plugin for ios:
+       @capacitor/local-notifications@7.0.7
+✔ update ios in 4.34s
+[info] Sync finished in 4.423s
