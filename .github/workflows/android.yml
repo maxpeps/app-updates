@@ -55,9 +55,18 @@ jobs:
         run: |
           set -o pipefail
           npx cap sync android 2>&1 | tail -3
-          npx cap build android --keystorepath "$PWD/signing/release.p12" --keystorepass shagzashagom --keystorealias shag --keystorealiaspass shagzashagom --androidreleasetype APK 2>&1 | tee ../ci-log/build.txt | tail -n 60
-          APK=$(find android/app/build/outputs/apk -name '*.apk' | grep -v unsigned | head -1)
-          echo "APK=$APK"; cp "$APK" ShagZaShagom.apk; ls -la ShagZaShagom.apk
+          KS="$PWD/signing/release.p12"
+          cd android
+          ./gradlew assembleRelease --no-daemon -q \
+            -Pandroid.injected.signing.store.file="$KS" -Pandroid.injected.signing.store.password=shagzashagom \
+            -Pandroid.injected.signing.key.alias=shag -Pandroid.injected.signing.key.password=shagzashagom 2>&1 | tee ../../ci-log/build.txt | tail -n 60
+          cd ..
+          APK=$(find android/app/build/outputs/apk/release -name '*.apk' | head -1)
+          echo "APK=$APK" | tee -a ../ci-log/build.txt
+          AS=$(ls -d $ANDROID_HOME/build-tools/*/ | sort -V | tail -1)apksigner
+          "$AS" verify --verbose --print-certs "$APK" 2>&1 | tee -a ../ci-log/build.txt | head -20
+          "$AS" verify "$APK"
+          cp "$APK" ShagZaShagom.apk; ls -la ShagZaShagom.apk
       - uses: actions/upload-artifact@v4
         with:
           name: ShagZaShagom-apk
