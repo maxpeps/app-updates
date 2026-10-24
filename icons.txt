@@ -1,0 +1,23 @@
+android/app/src/main/res/drawable:
+goal_check_off.xml
+goal_check_on.xml
+goal_plus_bg.xml
+goal_widget_bg.xml
+ic_launcher_background.xml
+ic_stat_icon.png
+splash.png
+
+android/app/src/main/res/mipmap-xxxhdpi:
+ic_launcher.png
+ic_launcher_foreground.png
+ic_launcher_round.png
+GoalsBridgePlugin.java
+GoalsNotif.java
+GoalsReceiver.java
+GoalsStore.java
+GoalsWidget.java
+MainActivity.java
+manifest patched
+        versionCode 6
+        versionName "1.16.0"
+5

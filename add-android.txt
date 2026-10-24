@@ -1,0 +1,38 @@
+7.6.9
+✔ Adding native android project in android in 29.07ms
+✔ add in 29.35ms
+✔ Copying web assets from www to android/app/src/main/assets/public in 1.91ms
+✔ Creating capacitor.config.json in android/app/src/main/assets in 314.22μs
+✔ copy android in 6.31ms
+✔ Updating Android plugins in 440.37μs
+[info] Found 1 Capacitor plugin for android:
+       @capacitor/local-notifications@7.0.7
+✔ update android in 12.50ms
+✔ Syncing Gradle in 146.89μs
+[success] android platform added!
+Follow the Developer Workflow guide to get building:
+https://capacitorjs.com/docs/basics/workflow
+✔ Copying web assets from www to android/app/src/main/assets/public in 3.48ms
+✔ Creating capacitor.config.json in android/app/src/main/assets in 467.52μs
+✔ copy android in 8.62ms
+✔ Updating Android plugins in 484.81μs
+[info] Found 1 Capacitor plugin for android:
+       @capacitor/local-notifications@7.0.7
+✔ update android in 17.61ms
+[info] Sync finished in 0.037s
+android/app/src/main/res/drawable:
+goal_check_off.xml
+goal_check_on.xml
+goal_plus_bg.xml
+goal_widget_bg.xml
+ic_launcher_background.xml
+ic_stat_icon.png
+splash.png
+
+android/app/src/main/res/mipmap-xxxhdpi:
+ic_launcher.png
+ic_launcher_foreground.png
+ic_launcher_round.png
+        versionCode 6
+        versionName "1.16.0"
+5
