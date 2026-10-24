@@ -67,7 +67,7 @@ jobs:
           echo "{\"version\":\"$V\",\"build\":${{ github.run_number }},\"url\":\"https://github.com/${{ github.repository }}/releases/download/android-latest/ShagZaShagom.apk\"}" > android-latest.json
           git config user.email ci@example.com && git config user.name ci
           git add android-latest.json && git commit -qm "Android build ${{ github.run_number }}" || true
-          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 3; done
+          for i in 1 2 3; do git push -q && break; git pull -q --rebase --autostash; sleep 3; done
       - name: Save logs to ci-logs-android branch
         if: always()
         run: |
