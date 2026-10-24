@@ -39,6 +39,9 @@ jobs:
           rm -f $R/mipmap-anydpi-v26/ic_launcher.xml $R/mipmap-anydpi-v26/ic_launcher_round.xml
           cp -r res/. $R/
           ls $R/mipmap-xxxhdpi $R/drawable | tee -a ../ci-log/add-android.txt
+          J=android/app/src/main/java/ru/shagzashagom/app
+          mkdir -p $J && cp native/ru/shagzashagom/app/*.java $J/ && ls $J
+          python3 native/patch_manifest.py android/app/src/main/AndroidManifest.xml
           M=android/app/src/main/AndroidManifest.xml
           sed -i 's#<uses-permission android:name="android.permission.INTERNET" />#&\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />\n    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />#' $M
           V=$(node -p "require('./package.json').version")
@@ -46,10 +49,12 @@ jobs:
           sed -i -E "s/versionCode [0-9]+/versionCode ${{ github.run_number }}/; s/versionName \"[^\"]*\"/versionName \"$V\"/" $G
           grep -E "versionCode|versionName" $G | tee -a ../ci-log/add-android.txt
           grep -c "permission" $M | tee -a ../ci-log/add-android.txt
+          cp $M ../ci-log/AndroidManifest.xml
       - name: Build signed APK
         working-directory: android-app
         run: |
           set -o pipefail
+          npx cap sync android 2>&1 | tail -3
           npx cap build android --keystorepath "$PWD/signing/release.p12" --keystorepass shagzashagom --keystorealias shag --keystorealiaspass shagzashagom --androidreleasetype APK 2>&1 | tee ../ci-log/build.txt | tail -n 60
           APK=$(find android/app/build/outputs/apk -name '*.apk' | grep -v unsigned | head -1)
           echo "APK=$APK"; cp "$APK" ShagZaShagom.apk; ls -la ShagZaShagom.apk

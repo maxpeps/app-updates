@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/w_root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/goal_widget_bg" android:padding="16dp">
+    <LinearLayout android:id="@+id/w_head" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="6dp">
+        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Цели на день" android:textColor="#FFFFFFFF" android:textSize="17sp" android:textStyle="bold"/>
+        <TextView android:id="@+id/w_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FF5FD3CC" android:textSize="14sp" android:textStyle="bold" android:paddingStart="8dp"/>
+        <TextView android:layout_width="30dp" android:layout_height="30dp" android:layout_marginStart="10dp" android:gravity="center" android:text="+" android:textColor="#FFFFFFFF" android:textSize="20sp" android:background="@drawable/goal_plus_bg" android:contentDescription="Открыть приложение"/>
+    </LinearLayout>
+    <TextView android:id="@+id/w_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="8dp" android:text="На сегодня целей нет. Нажми, чтобы добавить." android:textColor="#B3FFFFFF" android:textSize="14sp" android:visibility="gone"/>
+    <LinearLayout android:id="@+id/g0" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c0" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t0" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/g1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c1" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t1" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/g2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c2" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t2" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/g3" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c3" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t3" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/g4" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c4" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t4" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/g5" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c5" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t5" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/g6" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c6" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t6" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/g7" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingTop="7dp" android:paddingBottom="7dp" android:visibility="gone">
+        <ImageView android:id="@+id/c7" android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/goal_check_off" android:contentDescription="Отметить"/>
+        <TextView android:id="@+id/t7" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#FFFFFFFF" android:textSize="15sp" android:maxLines="2" android:ellipsize="end"/>
+    </LinearLayout>
+    <TextView android:id="@+id/w_more" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="4dp" android:textColor="#FF5FD3CC" android:textSize="13sp" android:visibility="gone"/>
+</LinearLayout>
