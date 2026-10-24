@@ -34,15 +34,11 @@ jobs:
         working-directory: android-app
         run: |
           set -e
+          exec > >(tee -a ../ci-log/icons.txt) 2>&1
           R=android/app/src/main/res
           rm -f $R/mipmap-anydpi-v26/ic_launcher.xml $R/mipmap-anydpi-v26/ic_launcher_round.xml
-          for d in mdpi:48 hdpi:72 xhdpi:96 xxhdpi:144 xxxhdpi:192; do
-            n=${d%%:*}; s=${d##*:}; mkdir -p $R/mipmap-$n
-            convert assets/icon-1024.png -resize ${s}x${s} $R/mipmap-$n/ic_launcher.png
-            cp $R/mipmap-$n/ic_launcher.png $R/mipmap-$n/ic_launcher_round.png
-          done
-          mkdir -p $R/drawable
-          convert assets/icon-1024.png -fuzz 12% -transparent "rgb(31,122,118)" -fill white -colorize 100 -trim -resize 80x80 -gravity center -background none -extent 96x96 $R/drawable/ic_stat_icon.png
+          cp -r res/. $R/
+          ls $R/mipmap-xxxhdpi $R/drawable | tee -a ../ci-log/add-android.txt
           M=android/app/src/main/AndroidManifest.xml
           sed -i 's#<uses-permission android:name="android.permission.INTERNET" />#&\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />\n    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />#' $M
           V=$(node -p "require('./package.json').version")
